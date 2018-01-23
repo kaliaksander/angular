@@ -24,7 +24,6 @@ export class AppComponent {
       this.changeMail(inputElement.value)
     }
   }
-
 }
 
 interface User{
