@@ -15,7 +15,14 @@ export class AppComponent {
     this.hideEmail = !this.hideEmail
   }
 
-  private changeMail(newMail:String){
+  private users:Array<User>=[
+  {username:"User1", email:"user1@example.com"},
+  {username:"User2", email:"user2@example.com"},
+  {username:"User3", email:"user3@example.com"},
+  {username:"User4", email:"user4@example.com"}
+  ]
+
+  private changeMail(newMail:string){
     this.currentUser.email = newMail
   }
   private KeyPress(event:KeyboardEvent){
