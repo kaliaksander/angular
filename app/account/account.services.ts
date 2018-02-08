@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/code';
+import {Injectable} from '@angular/core'
 import {Account} from "./account.model";
 
-@Injectable
+@Injectable()
 export class AccountService{
   private _accounts:Array<Account>= [{
     id:1,
@@ -21,12 +21,13 @@ export class AccountService{
   }
 
   private _nextId = 3;
+
    public create(newAccount:Account){
     newAccount.id = this._nextId++;
     this._accounts.push(newAccount);
   }
 
-  private removeAcc(index:number){
+  private remove(index:number){
     this._accounts.splice(index,1)
   }
 }

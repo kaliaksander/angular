@@ -1,51 +1,43 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, Injector} from '@angular/core';
 import {Account} from './account/account.model';
-import {AccountsList} from './account/accounts_list.component'
-import {AccountForm} from './account/account_form.component'
+import {AccountsList} from './account/accounts_list.component';
+import {AccountForm} from './account/account_form.component';
+import {AccountService} from './account/account.services';
 
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     styleUrls:['app/app.component.css'],
-    directives:[AccountsList,AccountForm]
+    directives:[AccountsList,AccountForm],
+    providers:[AccountService]
 
 })
 export class AppComponent {
-  private _accounts:Array<Account> = [
-      {
-        id:1,
-        title:"Bank Xyz",
-        description:"This is my main  bank account",
-        balance:501.2
-      },
-      {
-        id:2,
-        title:"yyy Bank",
-        description:"null",
-        balance:322
-      }
-  ];
-  private _nextId = 3
+
+  private _accounts:Array<Account>;
+
+  private _accountService:AccountService;
+
+  constructor(accountService:AccountService){
+
+    this._accountService = accountService;
+
+    this._accounts = this._accountService.getAll();
+  }
 
   private createAccError:string = "";
-  private accLimit:number = 3;
-  private createAcc(newAccount:Account){
-    this.createAccError=""
-    if(this._accounts.length < this.accLimit){
-      newAccount.id = this._nextId++;
-      this._accounts.push(newAccount);
 
-      this.form.resetForm();
+  public createAcc(newAccount:Account){
+   this._accountService.create(newAccount);
+   this.form.resetForm();
+ }
 
-    }else{
-      this.createAccError = "Only " + this.accLimit + " account(s) allowed.";
-    }
-  }
-  private removeAcc(index:number){
-    this._accounts.splice(index,1)
-  }
+ private removeAcc(index:number){
+   this._accountService.remove(index);
+ }
 
   @ViewChild(AccountForm) form:AccountForm;
+
 
 }

@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
+import {Component, Output, EventEmitter, Input, ViewChild, ElementRef} from '@angular/core';
 import {Account} from "./account.model";
 
 @Component({
@@ -18,7 +18,7 @@ export class AccountForm {
 
     @Input() error:string;
 
-    @ViewChild('form') form.ElementRef;
+    @ViewChild('form') form:ElementRef;
 
     public resetForm(){
       this.form.nativeElement.reset();
