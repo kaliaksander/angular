@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { AppComponent } from './app.component';
+import {Component} from '@angular/core';
 
 import {
   expect, it, iit, xit,
